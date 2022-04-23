@@ -17,6 +17,7 @@ class MainView: UIView {
         label.backgroundColor = UIColor(named: "BackgroundButtonColor")
         label.clipsToBounds = true
         label.layer.cornerRadius = 5
+        label.isHidden = true
         return label
     }()
     

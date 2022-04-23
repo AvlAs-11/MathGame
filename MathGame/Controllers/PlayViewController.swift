@@ -11,35 +11,57 @@ import UIKit
 class PlayViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var selectedSign: SignEnum?
-    
     var signString: String?
-    
     var playView = PlayView()
+    var generator = GenerateNumbers()
+    var trueAnswerNumber: Int?
+    var scoreCounter = 0
+    var timer: Timer?
+    var leftTime = 30
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
         addTargetsToButtons()
         generateNumbers()
-        print(signString)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        timer?.invalidate()
+    }
     private func configuration() {
         let frame = view.frame
         playView = PlayView(frame: frame)
         view.addSubview(playView)
-        
-        print(selectedSign?.rawValue)
+        playView.timerLabel.isHidden = false
+        playView.timerLabel.text = "00:\(leftTime)"
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
     private func addTargetsToButtons() {
         playView.stopGameButton.addTarget(self, action: #selector(stopGame), for: .touchUpInside)
+        playView.firstAnswerButton.addTarget(self, action: #selector(checkingAnswer), for: .touchUpInside)
+        playView.secondAnswerButton.addTarget(self, action: #selector(checkingAnswer), for: .touchUpInside)
+        playView.thirdAnswerButton.addTarget(self, action: #selector(checkingAnswer), for: .touchUpInside)
+        playView.fourthAnswerButton.addTarget(self, action: #selector(checkingAnswer), for: .touchUpInside)
     }
 
     @objc private func stopGame() {
-        print("STOP")
-//        self.dismiss(animated: true, completion: nil)
         self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @objc private func checkingAnswer(button: UIButton) {
+        print(button.tag)
+        if button.tag == trueAnswerNumber {
+            playView.correctAnswerLabel.isHidden = false
+            playView.scoreLabel.isHidden = false
+            scoreCounter += 1
+            playView.scoreLabel.text = "\(scoreCounter)"
+        }
+        else {
+            playView.correctAnswerLabel.isHidden = true
+        }
+        generateNumbers()
     }
     
     private func setNumbers(generator: GenerateNumbers, trueAnswerNumber: Int) {
@@ -78,14 +100,10 @@ class PlayViewController: UIViewController, UIGestureRecognizerDelegate {
         default:
             break
         }
-
         playView.exampleLable.text = "\(firstTrueNumber) \(signString) \(secondTrueNumber)"
-        
     }
 
     private func generateNumbers() {
-
-        let generator = GenerateNumbers()
 
         switch selectedSign {
 
@@ -104,8 +122,15 @@ class PlayViewController: UIViewController, UIGestureRecognizerDelegate {
         default:
             break
         }
-        let trueAnswerNumber = Int.random(in: 1...4)
-        setNumbers(generator: generator, trueAnswerNumber: trueAnswerNumber)
+        trueAnswerNumber = Int.random(in: 1...4)
+        guard let trueAnswerNumber = trueAnswerNumber else { return }
 
+        setNumbers(generator: generator, trueAnswerNumber: trueAnswerNumber)
+    }
+    
+    @objc private func updateTimer() {
+        print(leftTime)
+        leftTime -= 1
+        playView.timerLabel.text = "00:\(leftTime)"
     }
 }

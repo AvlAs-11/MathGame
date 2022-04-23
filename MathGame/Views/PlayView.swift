@@ -16,6 +16,7 @@ class PlayView: UIView {
         button.setTitleColor(UIColor(named: "PlusButtonColor"), for: .normal)
         button.titleLabel?.font = UIFont(name: "ArialMT", size: 40)
         button.layer.cornerRadius = 15
+        button.tag = 1
         return button
     }()
     
@@ -25,6 +26,7 @@ class PlayView: UIView {
         button.setTitleColor(UIColor(named: "MinusButtonColor"), for: .normal)
         button.titleLabel?.font = UIFont(name: "ArialMT", size: 40)
         button.layer.cornerRadius = 15
+        button.tag = 2
         return button
     }()
     
@@ -34,6 +36,7 @@ class PlayView: UIView {
         button.setTitleColor(UIColor(named: "MultiplyButtonColor"), for: .normal)
         button.titleLabel?.font = UIFont(name: "ArialMT", size: 40)
         button.layer.cornerRadius = 15
+        button.tag = 3
         return button
     }()
     
@@ -43,6 +46,7 @@ class PlayView: UIView {
         button.setTitleColor(UIColor(named: "DivisionButtonColor"), for: .normal)
         button.titleLabel?.font = UIFont(name: "ArialMT", size: 40)
         button.layer.cornerRadius = 15
+        button.tag = 4
         return button
     }()
     
