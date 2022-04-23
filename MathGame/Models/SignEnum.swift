@@ -8,5 +8,5 @@
 import Foundation
 
 enum SignEnum: Int {
-    case plus = 1, minus, multiply, division
+    case plus = 1, minus = 2, multiply = 3, division = 4
 }

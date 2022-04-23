@@ -19,15 +19,27 @@ class PlayViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
+        addTargetsToButtons()
         generateNumbers()
-        
+        print(signString)
     }
     
     private func configuration() {
         let frame = view.frame
         playView = PlayView(frame: frame)
         view.addSubview(playView)
-        print(selectedSign)
+        
+        print(selectedSign?.rawValue)
+    }
+    
+    private func addTargetsToButtons() {
+        playView.stopGameButton.addTarget(self, action: #selector(stopGame), for: .touchUpInside)
+    }
+
+    @objc private func stopGame() {
+        print("STOP")
+//        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     private func setNumbers(generator: GenerateNumbers, trueAnswerNumber: Int) {
@@ -88,7 +100,7 @@ class PlayViewController: UIViewController, UIGestureRecognizerDelegate {
             signString = " X "
         case .division:
             generator.generateNumbersForDivision()
-            signString = " / "
+            signString = " \u{00F7} "
         default:
             break
         }

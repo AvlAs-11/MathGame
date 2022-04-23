@@ -39,7 +39,7 @@ class EndGameView: UIView {
     }
     
     private func configuration() {
-        self.backgroundColor = .black
+        self.backgroundColor = UIColor(named: "BackgroundColor")
         
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
        

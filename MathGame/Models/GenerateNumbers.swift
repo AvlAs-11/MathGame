@@ -42,19 +42,26 @@ final class GenerateNumbers {
     }
     
     func generateNumbersForMultiply() {
-        firstTrueNumber = Int.random(in: 4...49)
-        secondTrueNumber = Int.random(in: 4...49)
-        guard let firstTrueNumber1 = firstTrueNumber,
-              let secondTrueNumber1 = secondTrueNumber else { return }
-        while (firstTrueNumber1 * secondTrueNumber1) > 99 {
-            firstTrueNumber = Int.random(in: 4...49)
-            secondTrueNumber = Int.random(in: 4...49)
-        }
-        
+//        firstTrueNumber = Int.random(in: 4...49)
+//        secondTrueNumber = Int.random(in: 4...49)
+//        guard let firstTrueNumber1 = firstTrueNumber,
+//              let secondTrueNumber1 = secondTrueNumber else { return }
+//        while (firstTrueNumber1 * secondTrueNumber1) > 99 {
+//            firstTrueNumber = Int.random(in: 4...49)
+//            secondTrueNumber = Int.random(in: 4...49)
+//        }
+//
 //        trueAnswer = firstTrueNumber * secondTrueNumber
-        firstFalseAnswer = Int.random(in: 8...98)
-        secondFalseAnswer = Int.random(in: 8...98)
-        thirdFalseAnswer = Int.random(in: 8...98)
+//        firstFalseAnswer = Int.random(in: 8...98)
+//        secondFalseAnswer = Int.random(in: 8...98)
+//        thirdFalseAnswer = Int.random(in: 8...98)
+//        Only for test
+        firstTrueNumber = 1
+        secondTrueNumber = 2
+        trueAnswer = 3
+        firstFalseAnswer = 4
+        secondFalseAnswer = 5
+        thirdFalseAnswer = 6
     }
     
     func generateNumbersForDivision() {

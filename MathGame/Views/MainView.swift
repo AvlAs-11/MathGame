@@ -12,7 +12,7 @@ class MainView: UIView {
     
     lazy var lastScoreLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .yellow
+        label.textColor = UIColor(named: "ScoreLabelColor")
         label.text = " Your last score: "
         label.backgroundColor = UIColor(named: "BackgroundButtonColor")
         label.clipsToBounds = true

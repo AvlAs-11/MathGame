@@ -12,7 +12,6 @@ class PlayView: UIView {
     
     lazy var firstAnswerButton: UIButton = {
         let button = UIButton()
-//        button.setImage(UIImage(named: "Plus"), for: .normal)
         button.backgroundColor = UIColor(named: "BackgroundButtonColor")
         button.setTitleColor(UIColor(named: "PlusButtonColor"), for: .normal)
         button.titleLabel?.font = UIFont(name: "ArialMT", size: 40)
@@ -22,7 +21,6 @@ class PlayView: UIView {
     
     lazy var secondAnswerButton: UIButton = {
         let button = UIButton()
-//        button.setImage(UIImage(named: "Minus"), for: .normal)
         button.backgroundColor = UIColor(named: "BackgroundButtonColor")
         button.setTitleColor(UIColor(named: "MinusButtonColor"), for: .normal)
         button.titleLabel?.font = UIFont(name: "ArialMT", size: 40)
@@ -32,7 +30,6 @@ class PlayView: UIView {
     
     lazy var thirdAnswerButton: UIButton = {
         let button = UIButton()
-//        button.setImage(UIImage(named: "Multiply"), for: .normal)
         button.backgroundColor = UIColor(named: "BackgroundButtonColor")
         button.setTitleColor(UIColor(named: "MultiplyButtonColor"), for: .normal)
         button.titleLabel?.font = UIFont(name: "ArialMT", size: 40)
@@ -42,7 +39,6 @@ class PlayView: UIView {
     
     lazy var fourthAnswerButton: UIButton = {
         let button = UIButton()
-//        button.setImage(UIImage(named: "Divide"), for: .normal)
         button.backgroundColor = UIColor(named: "BackgroundButtonColor")
         button.setTitleColor(UIColor(named: "DivisionButtonColor"), for: .normal)
         button.titleLabel?.font = UIFont(name: "ArialMT", size: 40)
@@ -53,8 +49,9 @@ class PlayView: UIView {
     lazy var exampleLable: UILabel = {
         let label = UILabel()
         label.text = "example"
-        label.textColor = .cyan
-        label.backgroundColor = .gray
+        label.font = UIFont(name: "ArialMT", size: 30)
+        label.textColor = UIColor(named: "ExampleLabelColor")
+        label.backgroundColor = UIColor(named: "BackgroundButtonColor")
         label.textAlignment = .center
         label.clipsToBounds = true
         label.layer.cornerRadius = 15
@@ -64,8 +61,10 @@ class PlayView: UIView {
     lazy var correctAnswerLabel: UILabel = {
         let label = UILabel()
         label.text = "Correct!"
-        label.textColor = .purple
+        label.font = UIFont(name: "ArialMT", size: 40)
+        label.textColor = UIColor(named: "CorrectLabelColor")
         label.textAlignment = .center
+        label.isHidden = true
         return label
     }()
     
@@ -73,7 +72,9 @@ class PlayView: UIView {
         let label = UILabel()
         label.text = "00:00"
         label.textAlignment = .center
-        label.textColor = .red
+        label.font = UIFont(name: "ArialMT", size: 34)
+        label.textColor = UIColor(named: "TimerLabelColor")
+        label.isHidden = true
         return label
     }()
     
@@ -82,10 +83,19 @@ class PlayView: UIView {
         button.setTitle("Stop Game", for: .normal)
         button.setTitleColor(.red, for: .normal)
         button.layer.cornerRadius = 15
-        button.backgroundColor = .gray
+        button.backgroundColor = UIColor(named: "BackgroundButtonColor")
         return button
     }()
     
+    lazy var scoreLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0"
+        label.textAlignment = .center
+        label.font = UIFont(name: "ArialMT", size: 40)
+        label.textColor = UIColor(named: "ScoreLabelColor")
+        label.isHidden = true
+        return label
+    }()
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(firstAnswerButton)
@@ -96,6 +106,7 @@ class PlayView: UIView {
         addSubview(correctAnswerLabel)
         addSubview(timerLabel)
         addSubview(stopGameButton)
+        addSubview(scoreLabel)
         configuration()
     }
     
@@ -104,7 +115,7 @@ class PlayView: UIView {
     }
     
     private func configuration() {
-        self.backgroundColor = .black
+        self.backgroundColor = UIColor(named: "BackgroundColor")
         
         firstAnswerButton.translatesAutoresizingMaskIntoConstraints = false
         secondAnswerButton.translatesAutoresizingMaskIntoConstraints = false
@@ -114,6 +125,7 @@ class PlayView: UIView {
         correctAnswerLabel.translatesAutoresizingMaskIntoConstraints = false
         timerLabel.translatesAutoresizingMaskIntoConstraints = false
         stopGameButton.translatesAutoresizingMaskIntoConstraints = false
+        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             firstAnswerButton.widthAnchor.constraint(equalToConstant: 80),
@@ -132,6 +144,8 @@ class PlayView: UIView {
             timerLabel.heightAnchor.constraint(equalToConstant: 40),
             stopGameButton.widthAnchor.constraint(equalToConstant: 170),
             stopGameButton.heightAnchor.constraint(equalToConstant: 60),
+            scoreLabel.heightAnchor.constraint(equalToConstant: 40),
+            scoreLabel.widthAnchor.constraint(equalToConstant: 40),
             firstAnswerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -45),
             firstAnswerButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -45),
             secondAnswerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 45),
@@ -143,11 +157,13 @@ class PlayView: UIView {
             exampleLable.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             exampleLable.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -135),
             correctAnswerLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            correctAnswerLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 135),
+            correctAnswerLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 195),
             timerLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            timerLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -185),
+            timerLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -195),
             stopGameButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            stopGameButton.centerYAnchor.constraint(equalTo: self.bottomAnchor, constant: -50)
+            stopGameButton.centerYAnchor.constraint(equalTo: self.bottomAnchor, constant: -50),
+            scoreLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            scoreLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 135)
         ])
     }
 }

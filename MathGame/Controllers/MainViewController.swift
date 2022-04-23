@@ -20,15 +20,6 @@ class MainViewController: UIViewController {
         
     }
     
-    @IBAction func switchSign(_ sender: UIButton) {
-      
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let playViewController = storyboard.instantiateViewController(withIdentifier: "PlayVC") as! PlayViewController
-        playViewController.selectedSign = SignEnum(rawValue: sender.tag)
-         navigationController?.pushViewController(playViewController,
-         animated: true)
-    }
-    
     private func configuration() {
         let frame = view.frame
         mainView = MainView(frame: frame)
