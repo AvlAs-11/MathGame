@@ -21,7 +21,7 @@ class EndGameView: UIView {
     
     lazy var scoreLabel: UILabel = {
         let label = UILabel()
-        label.text = "Your score: 1488"
+        label.text = "Your score: "
         label.textAlignment = .center
         label.textColor = .red
         return label
