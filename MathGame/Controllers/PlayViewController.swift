@@ -130,7 +130,17 @@ class PlayViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @objc private func updateTimer() {
         print(leftTime)
+        if leftTime == 0 {
+            presentEndViewController()
+        }
         leftTime -= 1
         playView.timerLabel.text = "00:\(leftTime)"
+    }
+    
+    private func presentEndViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let endGameViewController = storyboard.instantiateViewController(withIdentifier: "EndGameVC") as! EndGameViewController
+        endGameViewController.score = self.scoreCounter
+        navigationController?.pushViewController(endGameViewController, animated: true)
     }
 }
