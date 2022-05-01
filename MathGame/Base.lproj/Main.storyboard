@@ -44,7 +44,7 @@
         <!--End Game View Controller-->
         <scene sceneID="AMo-xQ-C27">
             <objects>
-                <viewController id="2sf-uz-xD7" customClass="EndGameViewController" customModule="MathGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EndGameVC" id="2sf-uz-xD7" customClass="EndGameViewController" customModule="MathGame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nYl-uU-6q7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
