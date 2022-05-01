@@ -149,7 +149,7 @@ class PlayView: UIView {
             stopGameButton.widthAnchor.constraint(equalToConstant: 170),
             stopGameButton.heightAnchor.constraint(equalToConstant: 60),
             scoreLabel.heightAnchor.constraint(equalToConstant: 40),
-            scoreLabel.widthAnchor.constraint(equalToConstant: 40),
+            scoreLabel.widthAnchor.constraint(equalToConstant: 80),
             firstAnswerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -45),
             firstAnswerButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -45),
             secondAnswerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 45),
