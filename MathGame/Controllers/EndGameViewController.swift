@@ -10,6 +10,7 @@ import UIKit
 
 class EndGameViewController: UIViewController {
     
+    var score: Int?
     var endGameView = EndGameView()
     
     override func viewDidLoad() {
@@ -20,6 +21,7 @@ class EndGameViewController: UIViewController {
     private func configuration() {
         let frame = view.frame
         endGameView = EndGameView(frame: frame)
+        endGameView.scoreLabel.text = endGameView.scoreLabel.text! + String(score!)
         view.addSubview(endGameView)
     }
 }
